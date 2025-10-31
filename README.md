@@ -5,10 +5,10 @@ AWS CloudFormation, ajuda a automatizar o processo de criação, configuração 
 
 * Passo 1: É preparar o ambiente local
 
-* Instalar e Configurar a AWS CLI:
+- Instalar e Configurar a AWS CLI:
 Garanta que a AWS Command Line Interface esteja instalada e configurada com credenciais que tenham permissões para criar recursos (especialmente CloudFormation, EC2 e VPC).
 
-* Anotação: Registre os comandos usados para configurar o seu perfil AWS (aws configure).
+- Anotação: Registre os comandos usados para configurar o seu perfil AWS (aws configure).
 
 * Passo 2: Criando o Template de Rede (VPC)
 Vamos começar pela base: a rede virtual (VPC).
@@ -72,6 +72,11 @@ Anotação: O que a validação verifica? (Apenas sintaxe, não lógica ou limit
 
 3. Criação da Stack de Aplicação:
 -Você precisará fornecer os valores de VpcId e SubnetId gerados pela primeira Stack.
+
 -Use aws cloudformation describe-stacks para buscar os Outputs da Stack VPC.
--Use o comando aws cloudformation create-stack com o arquivo webserver.yaml, passando os parâmetros: --parameters ParameterKey=VpcId,ParameterValue=vpc-xxxxxxxx ---------ParameterKey=SubnetId,ParameterValue=subnet-xxxxxxxx
--Insight: Como você poderia automatizar a passagem dos Outputs da primeira Stack para a segunda Stack? (Pista: Fn::ImportValue para templates não aninhados, ou Nested Stacks).
+
+-Use o comando aws cloudformation create-stack com o arquivo webserver.yaml, passando os parâmetros: --parameters ParameterKey=VpcId,ParameterValue=vpc-xxxxxxxx --------
+
+-ParameterKey=SubnetId,ParameterValue=subnet-xxxxxxxx
+
+*Insight: Como você poderia automatizar a passagem dos Outputs da primeira Stack para a segunda Stack? ( Fn::ImportValue para templates não aninhados, ou Nested Stacks).
